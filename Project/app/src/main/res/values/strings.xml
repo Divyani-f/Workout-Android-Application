@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="workout_list">Workout List</string>
+    <string name="new_workout">New Workout</string>
+    <string name="exercise_list">Exercise List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

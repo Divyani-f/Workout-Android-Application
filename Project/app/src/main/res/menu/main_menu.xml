@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/workoutOption"
+        android:title="Option1"
+        android:icon="@color/black"/>
+    <item
+        android:id="@+id/newOption"
+        android:title="Option2"
+        android:icon="@color/cardview_dark_background"/>
+    <item
+        android:id="@+id/exerciseOption"
+        android:title="Option3"
+        android:icon="@color/material_dynamic_neutral70"/>
+</menu>
