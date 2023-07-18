@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/NewWorkoutNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_workout"
+        android:textSize="22sp"></TextView>
+
+
+    <EditText
+        android:id="@+id/EditText_WorkoutName_Create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Hint_WorkoutName"
+        android:minHeight="60dp"
+        android:textColorHint="#8D6E63"
+        >
+    </EditText>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Cancel_WO_Create"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/Cancel_Dialog"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            ></Button>
+    <Button
+        android:id="@+id/Complete_WO_Create"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/NewWorkout_Confirm_Dialog"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        ></Button>
+
+
+</LinearLayout>
+
+    <Button
+        android:id="@+id/AddEx_to_WO_Create"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/AddExercise_Dialog"
+        android:textSize="20sp"
+        ></Button>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/NewWorkout_RecycleV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

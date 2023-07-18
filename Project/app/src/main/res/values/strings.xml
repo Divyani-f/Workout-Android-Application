@@ -1,8 +1,35 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="AppTitle">Workout Companion</string>
+
     <string name="workout_list">Workout List</string>
     <string name="new_workout">New Workout</string>
     <string name="exercise_list">Exercise List</string>
+
+    <string name="Exercise_List_Label">Exercise List:</string>
+    <string name="Workout_List_Label">Workout List:</string>
+    <string name="New_Workout_Label">New Workout:</string>
+
+    <string name="Hint_WorkoutName">Workout Name</string>
+    <string name="Hint_SearchPrompt">Search</string>
+
+    <string name="ExerciseName_Item">Exercise Name</string>
+    <string name="Reps_Item">Rep</string>
+    <string name="Sets_Item">Sets</string>
+    <string name="Weight_Item">Weight</string>
+
+    <string name="Close_Dialog">Close</string>
+    <string name="Yes_Dialog">Yes</string>
+    <string name="No_Dialog">No</string>
+    <string name="Cancel_Dialog">Cancel</string>
+
+    <string name="AddExercise_Dialog">Add Exercise</string>
+    <string name="WorkoutComplete_Dialog">Workout Complete</string>
+    <string name="NewWorkout_Confirm_Dialog">Done</string>
+
+    <string name="Deletion_Prompt">You wish to delete: </string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

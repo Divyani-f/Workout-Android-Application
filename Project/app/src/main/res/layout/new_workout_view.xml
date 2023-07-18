@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/ExerciseName_NWO_RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ExerciseName_Item"
+        android:layout_weight="0.5"
+        android:textSize="15sp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/ExerRep_NWO_RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Reps_Item"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/ExerSet_NWO_RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Sets_Item"
+        android:layout_weight="1"
+        android:textSize="15sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/ExerWeight_NWO_RV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Weight_Item"
+        android:layout_weight="1"
+        android:textSize="15sp">
+    </TextView>
+
+</LinearLayout>
+
+</LinearLayout>
