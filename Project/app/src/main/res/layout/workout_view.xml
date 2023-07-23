@@ -16,13 +16,13 @@
             android:text="TextView"
             android:textColor="@android:color/black"
             android:textSize="24sp"
-            android:layout_weight="0.75"/>
+            android:layout_weight="10"/>
 
         <Switch
             android:id="@+id/Switch_WorkoutComplete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.2"
             android:text="Switch" />
 
     </LinearLayout>

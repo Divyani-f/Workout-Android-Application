@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class New_Workout_Activity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class New_Workout_Activity extends AppCompatActivity {
+    private ArrayList<Exercise> ExerListA;
+    private RecyclerView RV_ItemA;
     private EditText WorkoutName;
     private Button Complete;
     private Button AddExer;
@@ -26,6 +32,10 @@ public class New_Workout_Activity extends AppCompatActivity {
         AddExer = findViewById(R.id.AddEx_to_WO_Create);
         CancelAll = findViewById(R.id.Cancel_WO_Create);
 
+        RV_ItemA = findViewById(R.id.NewWorkout_RecycleV);
+        ExerListA = new ArrayList<>();
+        setTestInfo();
+        setNWOAdapter();
         //Create Workout ID for table!!!
 
 
@@ -59,10 +69,28 @@ public class New_Workout_Activity extends AppCompatActivity {
                 //Set up switch to DeleteConfirm Dialog
                 //Pass along workout ID to dialog for deletion from workoutlist and bridge tables
 
+
+                BacktoHome(); //Return to the Main Activity (Three Button Home)
             }
         });
 
     }
+
+    private void setNWOAdapter() {
+        New_Workout_Adapter adapt = new New_Workout_Adapter(ExerListA);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RV_ItemA.setLayoutManager(layoutManager);
+        RV_ItemA.setItemAnimator(new DefaultItemAnimator());
+        RV_ItemA.setAdapter(adapt);
+    }
+
+    private void setTestInfo() {
+        ExerListA.add(new Exercise("Plank"));
+        ExerListA.add(new Exercise("Sit-up"));
+        ExerListA.add(new Exercise("Squat"));
+        ExerListA.add(new Exercise("Bench Press"));
+    }
+
 
     public void BacktoHome(){
         //Actual call to the Main Activity

@@ -6,15 +6,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication.ExerciseList;
-import com.example.myapplication.NewWorkout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
