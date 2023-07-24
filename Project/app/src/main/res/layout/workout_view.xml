@@ -10,20 +10,47 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/TxtV_WorkoutName_WO"
+            android:id="@+id/ExerName_WOEB_RV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
-            android:layout_weight="10"/>
+            android:textSize="20sp"
+            android:layout_weight="0.80"/>
+
+        <TextView
+            android:id="@+id/ExerReps_WOEB_RV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Reps_Item"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/ExerSets_WOEB_RV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Sets_Item"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/ExerWeight_WOEB_RV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Weight_Item"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
 
         <Switch
-            android:id="@+id/Switch_WorkoutComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:text="Switch" />
+            android:id="@+id/Switch_WorkoutComplete_RV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
 
     </LinearLayout>
 </LinearLayout>

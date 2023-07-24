@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     private Button WorkoutListBtn;
     private Button ExerciseListBtn;
 
+    private Button Testing_Workout_Btn;
     //private WorkoutLAdapter workoutLAdapter;
 
     @Override
@@ -80,7 +81,13 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-
+        Testing_Workout_Btn = findViewById(R.id.TestsWorkoutActual);
+        Testing_Workout_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeWorkoutExerBridge();
+            }
+        });
 
 
     }
@@ -125,12 +132,19 @@ public class MainActivity extends AppCompatActivity
 
     public void changeWorkoutList(){
 
+        Intent intents = new Intent(this, Workout_Listing_Activity.class);
+        startActivity(intents);
 
     }
 
     public void changeExerciseList(){
-
+        Intent intenter = new Intent(this, Exercise_Listing_Activity.class);
+        startActivity(intenter);
 
     }
 
+    public void changeWorkoutExerBridge(){
+        Intent intentIt = new Intent(this, Workout_Exercise_List_Activity.class);
+        startActivity(intentIt);
+    }
 }

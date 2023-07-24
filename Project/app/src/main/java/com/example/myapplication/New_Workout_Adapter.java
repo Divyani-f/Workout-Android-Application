@@ -21,11 +21,15 @@ public class New_Workout_Adapter extends RecyclerView.Adapter<New_Workout_Adapte
 
     public class NWO_viewHolder extends RecyclerView.ViewHolder{
         private TextView ExerName;
-
+        private TextView ExerRepsx;
+        private TextView ExerSetsx;
+        private TextView ExerWeightx;
         public NWO_viewHolder(final View view){
             super(view);
             ExerName = view.findViewById(R.id.ExerciseName_NWO_RV);
-
+            ExerRepsx = view.findViewById(R.id.ExerRep_NWO_RV);
+            ExerSetsx = view.findViewById(R.id.ExerSet_NWO_RV);
+            ExerWeightx = view.findViewById(R.id.ExerWeight_NWO_RV);
         }
 
     }
