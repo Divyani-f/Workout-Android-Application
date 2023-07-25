@@ -36,10 +36,20 @@ public class Exercise_Listing_Activity extends AppCompatActivity {
     }
 
     private void setTestingInfos() {
-        ExersNameList.add(new Exercise("Plank"));
-        ExersNameList.add(new Exercise("Sit-up"));
-        ExersNameList.add(new Exercise("Squat"));
-        ExersNameList.add(new Exercise("Bench Press"));
+        Exercise e1 = new Exercise();
+        e1.setExercise("Plank");
+        ExersNameList.add(e1);
 
+        Exercise e2 = new Exercise();
+        e2.setExercise("Sit-up");
+        ExersNameList.add(e2);
+
+        Exercise e3 = new Exercise();
+        e3.setExercise("Squat");
+        ExersNameList.add(e3);
+
+        Exercise e4 = new Exercise();
+        e4.setExercise("Bench Press");
+        ExersNameList.add(e4);
     }
 }

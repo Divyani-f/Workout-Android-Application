@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -48,8 +49,10 @@ public class New_Workout_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view){
             //Finalize any database calls to ensure the workout, exercise, and bridge are updated!
-
-                BacktoHome(); //Return to the Main Activity (Three Button Home)
+               // MainActivity mainActivity = (MainActivity) getActivity();
+               // mainActivity.addWorkout(Workout);
+               // dismiss();
+                //BacktoHome(); //Return to the Main Activity (Three Button Home)
             }
         });
 
@@ -85,10 +88,22 @@ public class New_Workout_Activity extends AppCompatActivity {
     }
 
     private void setTestInfo() {
-        ExerListA.add(new Exercise("Plank"));
-        ExerListA.add(new Exercise("Sit-up"));
-        ExerListA.add(new Exercise("Squat"));
-        ExerListA.add(new Exercise("Bench Press"));
+        Exercise e1 = new Exercise();
+        e1.setExercise("Plank");
+        ExerListA.add(e1);
+
+        Exercise e2 = new Exercise();
+        e2.setExercise("Sit-up");
+        ExerListA.add(e2);
+
+        Exercise e3 = new Exercise();
+        e3.setExercise("Squat");
+        ExerListA.add(e3);
+
+        Exercise e4 = new Exercise();
+        e4.setExercise("Bench Press");
+        ExerListA.add(e4);
+
     }
 
 

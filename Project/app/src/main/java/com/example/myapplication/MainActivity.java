@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
-        implements BottomNavigationView
-        .OnItemSelectedListener  {
+         {
 
     BottomNavigationView bottomNavigationView;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity
     private Button ExerciseListBtn;
 
     private Button Testing_Workout_Btn;
-    //private WorkoutLAdapter workoutLAdapter;
+    private AppDatabase ap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,10 +37,26 @@ public class MainActivity extends AppCompatActivity
         bottomNavigationView
                 = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView
-                .setOnItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.bottomNavigationView);
 
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.workoutOption) {
+                changeWorkoutList();
+            }
+            else if (id == R.id.newOption) {
+                changeNewWorkout();
+
+            }
+            else if (id == R.id.exerciseOption) {
+                changeExerciseList();
+
+            }
+
+            return super.onOptionsItemSelected(item);
+        });
+        insertDataInBackground();
         newWorkoutBtn = findViewById(R.id.NewWorkoutBtn);
         newWorkoutBtn.setOnClickListener(
                 new View.OnClickListener() {
@@ -91,39 +108,36 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    //WorkoutList firstFragment = new WorkoutList();
-    //NewWorkout secondFragment = new NewWorkout();
-    //ExerciseList thirdFragment = new ExerciseList();
 
-    @Override
-    public boolean
-    onNavigationItemSelected(@NonNull MenuItem item)
-    {
-/*
-        switch (item.getItemId()) {
-            case R.id.Option1:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, firstFragment)
-                        .commit();
-                return true;
 
-            case R.id.home:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, secondFragment)
-                        .commit();
-                return true;
+             private void insertDataInBackground() {
+                 Log.d("ExerciseLog2", "Here ----");
+                 new Thread(new Runnable() {
+                     @Override
+                     public void run() {
+                         // Create an instance of ExerciseDao
+                         AppDatabase db=AppDatabase.getInstance(getApplicationContext());
+                         Exercise sampleExercise = new Exercise();
+                         sampleExercise.setExerciseName("Push-ups");
+                         sampleExercise.setDescription("Perform 3 sets of 10 push-ups");
+                         Log.d("ExerciseLog2", "Here ----");
+                         // Insert the sample Exercise object into the database
+                         db.exerciseDao().insertExercise(sampleExercise);
+                         List<Exercise> l1=db.exerciseDao().getAllExercises();
+                         for(Exercise e : l1){
+                             Log.d("ExerciseLog", "Exercise ID: " + e.getExerciseName());
+                         }
+                     }
+                 }).start();
+             }
 
-            case R.id.settings:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, thirdFragment)
-                        .commit();
-                return true;
-        }
-  */      return false;
-    }
+             public void addContact (Workout w) {
+                 ap.workoutDao().insertWorkout(w);
+                 List<Workout> l1=ap.workoutDao().getAllWorkouts();
+                 for(Workout we: l1){
+                     Log.d("WorkoutLog", "Workout name: " +we.getWorkoutName() );
+                 }
+             }
 
     public void changeNewWorkout (){
     Intent intent = new Intent(this, New_Workout_Activity.class);
