@@ -18,7 +18,7 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
     private ArrayList<Exercise> ExersANameList;
     private RecyclerView RV_ItemD;
     private TextView WorkoutTitle;
-
+    private ArrayList<Workout_Exercise> workoutList;
     private Button Confirm_Complete;
 
     @Override
@@ -59,6 +59,8 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
     }
 
     private void setTestingInfosA() {
+        Intent i = getIntent();
+        workoutList = (ArrayList<Workout_Exercise>) i.getSerializableExtra("workout_list");
         WorkoutTitle.setText("Core Exercise");
         Exercise e1 = new Exercise();
         e1.setExercise("Plank");
