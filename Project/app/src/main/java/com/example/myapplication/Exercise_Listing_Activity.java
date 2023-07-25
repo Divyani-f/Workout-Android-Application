@@ -20,6 +20,7 @@ public class Exercise_Listing_Activity extends AppCompatActivity {
     private RecyclerView RV_ItemC;
 
     private AppDatabase ap;
+    private ArrayList<Exercise> exerciseList;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -70,7 +71,7 @@ public class Exercise_Listing_Activity extends AppCompatActivity {
     }
 
     private void setELAdapter() {
-        Exercise_Listing_Adapter AdaptsIt = new Exercise_Listing_Adapter(ExersNameList);
+        Exercise_Listing_Adapter AdaptsIt = new Exercise_Listing_Adapter(exerciseList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         RV_ItemC.setLayoutManager(layoutManager);
         RV_ItemC.setItemAnimator(new DefaultItemAnimator());
@@ -79,6 +80,8 @@ public class Exercise_Listing_Activity extends AppCompatActivity {
     }
 
     private void setTestingInfos() {
+        Intent i = getIntent();
+        exerciseList = (ArrayList<Exercise>) i.getSerializableExtra("exerciseList");
         Exercise e1 = new Exercise();
         e1.setExercise("Plank");
         ExersNameList.add(e1);

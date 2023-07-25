@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
             return super.onOptionsItemSelected(item);
         });
 
-       // insertDataInBackground();
+       //insertDataInBackground();
         newWorkoutBtn = findViewById(R.id.NewWorkoutBtn);
         newWorkoutBtn.setOnClickListener(
                 new View.OnClickListener() {
@@ -103,19 +103,16 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-             private void insertDataInBackground() {
+             /*private void insertDataInBackground() {
                  Log.d("ExerciseLog2", "Here ----");
                  new Thread(new Runnable() {
                      @Override
                      public void run() {
                          // Create an instance of ExerciseDao
                          AppDatabase db=AppDatabase.getInstance(getApplicationContext());
-                         Exercise sampleExercise = new Exercise();
-                         sampleExercise.setExerciseName("Push-ups");
-                         sampleExercise.setDescription("Perform 3 sets of 10 push-ups");
-                         Log.d("ExerciseLog2", "Here ----");
+                         List<Exercise> e=AddExercise.AllExercises();
                          // Insert the sample Exercise object into the database
-                         db.exerciseDao().insertExercise(sampleExercise);
+                         //db.exerciseDao().insertExercise(sampleExercise);
                          List<Exercise> l1=db.exerciseDao().getAllExercises();
                          for(Exercise e : l1){
                              Log.d("ExerciseLog", "Exercise ID: " + e.getExerciseName());
@@ -123,7 +120,7 @@ public class MainActivity extends AppCompatActivity
                      }
                  }).start();
              }
-
+*/
 
              private final ActivityResultLauncher<Intent> newWorkoutActivityResultLauncher = registerForActivityResult(
                      new ActivityResultContracts.StartActivityForResult(),
@@ -172,6 +169,8 @@ public class MainActivity extends AppCompatActivity
 
     public void changeExerciseList(){
         Intent intenter = new Intent(this, Exercise_Listing_Activity.class);
+        List<Exercise> e=AddExercise.AllExercises();
+        intenter.putExtra("exerciseList",(Serializable)e);
         startActivity(intenter);
 
     }

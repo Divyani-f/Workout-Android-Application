@@ -21,10 +21,12 @@ public class Exercise_Listing_Adapter extends RecyclerView.Adapter<Exercise_List
     public class EL_viewHolder extends RecyclerView.ViewHolder {
 
         private TextView Exercise_Name_Txt;
+        private TextView Exercise_Desc_Txt;
 
         public EL_viewHolder(final View view) {
             super(view);
             Exercise_Name_Txt = view.findViewById(R.id.ExerciseName_EL_RV);
+            Exercise_Desc_Txt = view.findViewById(R.id.ExerciseDesc_EL_RV);
         }
     }
 
@@ -37,8 +39,10 @@ public class Exercise_Listing_Adapter extends RecyclerView.Adapter<Exercise_List
 
     @Override
     public void onBindViewHolder(@NonNull Exercise_Listing_Adapter.EL_viewHolder holder, int position) {
-        String WorkoutItem = ExerNmList.get(position).getExercise();
-        holder.Exercise_Name_Txt.setText(WorkoutItem);
+        //String WorkoutItem1 = ExerNmList.get(position).getExerciseName();
+        //String WorkoutItem2 = ExerNmList.get(position).getDescription();
+        holder.Exercise_Name_Txt.setText(ExerNmList.get(position).getExerciseName());
+        holder.Exercise_Desc_Txt.setText(ExerNmList.get(position).getDescription());
     }
 
     @Override
