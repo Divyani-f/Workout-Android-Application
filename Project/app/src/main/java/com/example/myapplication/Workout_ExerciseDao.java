@@ -12,4 +12,6 @@ public interface Workout_ExerciseDao {
 
     @Query("SELECT * FROM Workout_Exercise")
     List<Workout_Exercise> getAllWorkout_Exercises();
+    @Query("SELECT * FROM Workout_Exercise WHERE name = :exerciseName")
+    List<Workout_Exercise> getWorkout_ExercisesByName(String exerciseName);
 }

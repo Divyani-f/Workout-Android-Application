@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -50,13 +53,13 @@ public class MainActivity extends AppCompatActivity
 
             }
             else if (id == R.id.exerciseOption) {
-                changeExerciseList();
+
 
             }
 
             return super.onOptionsItemSelected(item);
         });
-        insertDataInBackground();
+       // insertDataInBackground();
         newWorkoutBtn = findViewById(R.id.NewWorkoutBtn);
         newWorkoutBtn.setOnClickListener(
                 new View.OnClickListener() {
@@ -131,23 +134,49 @@ public class MainActivity extends AppCompatActivity
                  }).start();
              }
 
-             public void addContact (Workout w) {
-                 ap.workoutDao().insertWorkout(w);
-                 List<Workout> l1=ap.workoutDao().getAllWorkouts();
-                 for(Workout we: l1){
-                     Log.d("WorkoutLog", "Workout name: " +we.getWorkoutName() );
-                 }
-             }
 
+             private final ActivityResultLauncher<Intent> newWorkoutActivityResultLauncher = registerForActivityResult(
+                     new ActivityResultContracts.StartActivityForResult(),
+                     result -> {
+                         if (result.getResultCode() == MainActivity.RESULT_OK) {
+                             Intent data = result.getData();
+                             if (data != null) {
+
+                                 // Extract the Workout object from the intent
+                                 Workout workout = (Workout) data.getSerializableExtra("workout");
+                                 Workout_Exercise workout_exercise=(Workout_Exercise) data.getSerializableExtra("workout_exercise");
+                                 if (workout != null) {
+                                     ap=AppDatabase.getInstance(getApplicationContext());
+                                     ap.workoutDao().insertWorkout(workout);
+                                     List<Workout> l1=ap.workoutDao().getAllWorkouts();
+                                     for(Workout we: l1){
+                                         Log.d("WorkoutLog", "Workout name: " +we.getWorkoutName() );
+                                     }
+
+                                 }
+                                 /*if(workout_exercise!=null){
+                                     Log.d("Here","yaay hre");
+                                     ap=AppDatabase.getInstance(getApplicationContext());
+                                     ap.workoutDao().insertWorkout(workout);
+                                     List<Workout_Exercise> l1=ap.workout_exerciseDao().getAllWorkout_Exercises();
+                                     for(Workout_Exercise w: l1){
+                                         Log.d("WorkoutLog", "Workout name: " +w.getName() );
+                                     }
+                                 }*/
+                             }
+                         }
+                     });
     public void changeNewWorkout (){
     Intent intent = new Intent(this, New_Workout_Activity.class);
-        startActivity(intent);
+        newWorkoutActivityResultLauncher.launch(intent);
     }
 
     public void changeWorkoutList(){
-
+        ap=AppDatabase.getInstance(getApplicationContext());
         Intent intents = new Intent(this, Workout_Listing_Activity.class);
-        startActivity(intents);
+        List<Workout_Exercise> l1=ap.workout_exerciseDao().getAllWorkout_Exercises();
+            intents.putExtra("workout_list", (Serializable) l1);
+            startActivity(intents);
 
     }
 

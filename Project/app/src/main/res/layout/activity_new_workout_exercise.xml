@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/NewWorkoutNote2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_exercise"
+        android:textSize="22sp"/>
+
+
+    <EditText
+        android:id="@+id/EditText_WorkoutExerciseName_Create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_exercise_name"
+        android:minHeight="60dp"
+        android:textColorHint="#8D6E63"
+        >
+    </EditText>
+
+
+
+    <EditText
+        android:id="@+id/EditText_weights"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_weights"
+        android:minHeight="60dp"
+        android:textColorHint="#8D6E63"
+        >
+    </EditText>
+    <EditText
+        android:id="@+id/EditReps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_reps"
+        android:minHeight="60dp"
+        android:textColorHint="#8D6E63"
+        >
+    </EditText>
+    <EditText
+        android:id="@+id/EditSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Sets"
+        android:minHeight="60dp"
+        android:textColorHint="#8D6E63"
+        >
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/Complete_WE_Create"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/NewWorkout_Confirm_Dialog"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

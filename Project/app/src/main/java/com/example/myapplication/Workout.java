@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+import java.io.Serializable;
 @Entity(tableName = "Workout")
-public class Workout {
+public class Workout implements Serializable{
     public long getId() {
         return id;
     }

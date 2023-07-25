@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+import java.io.Serializable;
 @Entity(tableName = "Exercise")
-public class Exercise {
+public class Exercise implements Serializable{
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="_id")
     private long id;

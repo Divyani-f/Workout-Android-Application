@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,11 +10,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class New_Workout_Activity extends AppCompatActivity {
     private ArrayList<Exercise> ExerListA;
@@ -48,11 +52,14 @@ public class New_Workout_Activity extends AppCompatActivity {
         Complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-            //Finalize any database calls to ensure the workout, exercise, and bridge are updated!
-               // MainActivity mainActivity = (MainActivity) getActivity();
-               // mainActivity.addWorkout(Workout);
-               // dismiss();
-                //BacktoHome(); //Return to the Main Activity (Three Button Home)
+                Workout w= new Workout();
+                WorkoutName = findViewById(R.id.EditText_WorkoutName_Create);
+                WO_Name = WorkoutName.getText().toString();
+                w.setWorkoutName(WO_Name);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("workout", w);
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         });
 
@@ -62,6 +69,11 @@ public class New_Workout_Activity extends AppCompatActivity {
                 //Set up switch to the exercise list to add to list
                 //Pass workout ID to properly store info with the AddExercise Dialog
                 //
+                Intent intentIt = new Intent(getApplicationContext(), New_WorkoutExerciseActivity.class);
+                WorkoutName = findViewById(R.id.EditText_WorkoutName_Create);
+                WO_Name = WorkoutName.getText().toString();
+                intentIt.putExtra("workout_name", WO_Name);
+                newWorkoutActivityResultLauncher.launch(intentIt); // Use the launcher to start the activity
 
             }
         });
@@ -112,5 +124,31 @@ public class New_Workout_Activity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    private AppDatabase ap;
+    private final ActivityResultLauncher<Intent> newWorkoutActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                Log.d("Here2","yaay hre");
+                if (result.getResultCode() == RESULT_OK) {
 
+                    Intent data = result.getData();
+                    if (data != null) {
+
+                        // Extract the Workout object from the intent
+
+                        Workout_Exercise workout_exercise=(Workout_Exercise) data.getSerializableExtra("workout_exercise");
+
+                        if(workout_exercise!=null){
+                            Log.d("Here","yaay hre");
+                            ap=AppDatabase.getInstance(getApplicationContext());
+                            ap.workout_exerciseDao().insert_Workout_Exercise(workout_exercise);
+                            List<Workout_Exercise> l1=ap.workout_exerciseDao().getAllWorkout_Exercises();
+                            for(Workout_Exercise w: l1){
+                                Log.d("WorkoutLog", "Workout name: " +w.getName() );
+                            }
+
+                        }
+                    }
+                }
+            });
 }
