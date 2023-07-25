@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,11 +22,32 @@ public class Workout_Listing_Activity extends AppCompatActivity implements Worko
     private ArrayList<WorkoutNames> WorkoutList;
     private RecyclerView RV_ItemB;
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_listing);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView_WOL);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.workoutOption) {
+
+            }
+            else if (id == R.id.ExerOption) {
+                changeExerList();
+
+            }
+            else if (id == R.id.HomeOption) {
+                backtoHomeScreen();
+            }
+
+            return super.onOptionsItemSelected(item);
+        });
+
 
         RV_ItemB = findViewById(R.id.WorkoutList_RecycleV);
 
@@ -34,13 +57,27 @@ public class Workout_Listing_Activity extends AppCompatActivity implements Worko
 
     }
 
-   private void setTestingInfo() {
+    private void changeExerList() {
+
+        Intent intenter = new Intent(this, Exercise_Listing_Activity.class);
+        startActivity(intenter);
+
+    }
+
+    private void backtoHomeScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void setTestingInfo() {
         WorkoutList = new ArrayList<>(); // Initialize the WorkoutList ArrayList
 
-        Intent i = getIntent();
-        wl = (ArrayList<Workout_Exercise>) i.getSerializableExtra("workout_list");
+       Intent i = getIntent();
+       wl = (ArrayList<Workout_Exercise>) i.getSerializableExtra("workout_list");
        HashSet<String> uniqueNamesSet = new HashSet<>();
        List<Workout_Exercise> uniqueWorkoutsList = new ArrayList<>();
+
        for (Workout_Exercise exercise : wl) {
            String workoutName = exercise.getWorkoutName();
            if (!uniqueNamesSet.contains(workoutName)) {

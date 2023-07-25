@@ -100,7 +100,7 @@ public class New_Workout_Activity extends AppCompatActivity {
     }
 
     private void setTestInfo() {
-        Exercise e1 = new Exercise();
+  /*      Exercise e1 = new Exercise();
         e1.setExercise("Plank");
         ExerListA.add(e1);
 
@@ -115,7 +115,7 @@ public class New_Workout_Activity extends AppCompatActivity {
         Exercise e4 = new Exercise();
         e4.setExercise("Bench Press");
         ExerListA.add(e4);
-
+*/
     }
 
 

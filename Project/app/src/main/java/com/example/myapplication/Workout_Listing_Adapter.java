@@ -46,6 +46,7 @@ public class Workout_Listing_Adapter extends RecyclerView.Adapter<Workout_Listin
                     if (position != RecyclerView.NO_POSITION) {
                         itemClickListener.onItemClick(WorkONames.get(position));
                     }
+                    
                 }
             }
         });

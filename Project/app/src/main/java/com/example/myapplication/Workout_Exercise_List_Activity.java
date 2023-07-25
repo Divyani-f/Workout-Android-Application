@@ -7,11 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Workout_Exercise_List_Activity extends AppCompatActivity {
 
@@ -21,6 +27,9 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
     private ArrayList<Workout_Exercise> workoutList;
     private Button Confirm_Complete;
 
+    private AppDatabase ap;
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +38,29 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
         RV_ItemD = findViewById(R.id.WorkExerBridge_List_RecycleV);
         ExersANameList = new ArrayList<>();
         WorkoutTitle = findViewById(R.id.WorkoutName_EL_L);
+
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView_WOA);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.workoutOption) {
+                swaptoWorkoutList();
+            }
+            else if (id == R.id.ExerOption) {
+
+                swaptoExerList();
+            }
+            else if (id == R.id.HomeOption) {
+                backtoHomeScreen();
+            }
+
+            return super.onOptionsItemSelected(item);
+        });
+
+
+
         Confirm_Complete = findViewById(R.id.ConfirmWO_Done_WEL);
         Confirm_Complete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +75,27 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
 
     }
 
+    private void swaptoExerList() {
+        Intent intenter = new Intent(this, Exercise_Listing_Activity.class);
+        startActivity(intenter);
+
+    }
+
+    private void backtoHomeScreen() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void swaptoWorkoutList() {
+        ap=AppDatabase.getInstance(getApplicationContext());
+        Intent intents = new Intent(this, Workout_Listing_Activity.class);
+        List<Workout_Exercise> l1=ap.workout_exerciseDao().getAllWorkout_Exercises();
+        intents.putExtra("workout_list", (Serializable) l1);
+        startActivity(intents);
+
+    }
+
     public void backToMain(){
         Intent intenters = new Intent(this, MainActivity.class);
         startActivity(intenters);
@@ -51,7 +104,7 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
 
 
     private void setWELAdapterA() {
-        Workout_Exercise_List_Adapter Adap = new Workout_Exercise_List_Adapter(ExersANameList);
+        Workout_Exercise_List_Adapter Adap = new Workout_Exercise_List_Adapter(workoutList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         RV_ItemD.setLayoutManager(layoutManager);
         RV_ItemD.setItemAnimator(new DefaultItemAnimator());
@@ -60,7 +113,15 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
 
     private void setTestingInfosA() {
         Intent i = getIntent();
-        workoutList = (ArrayList<Workout_Exercise>) i.getSerializableExtra("workout_list");
+        workoutList = (ArrayList<Workout_Exercise>) i.getSerializableExtra("name_list");
+        WorkoutTitle.setText(workoutList.get(0).getWorkoutName());
+
+        HashSet<String> uniqueNamesSetX = new HashSet<>();
+        List<Workout_Exercise> uniqueWorkoutsList = new ArrayList<>();
+
+      //  Log.d("Check", "Workout items: "+ workoutList.get(0).getName() + workoutList.get(0).getReps() );
+
+/*
         WorkoutTitle.setText("Core Exercise");
         Exercise e1 = new Exercise();
         e1.setExercise("Plank");
@@ -77,7 +138,9 @@ public class Workout_Exercise_List_Activity extends AppCompatActivity {
         Exercise e4 = new Exercise();
         e4.setExercise("Bench Press");
         ExersANameList.add(e4);
+*/
     }
+
 
 
 }

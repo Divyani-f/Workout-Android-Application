@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class Workout_Exercise_List_Adapter extends RecyclerView.Adapter<Workout_Exercise_List_Adapter.WEL_viewHolder> {
 
-    private ArrayList<Exercise> WO_ExerNmList;
+    private ArrayList<Workout_Exercise> WO_ExerNmList;
 
-    public Workout_Exercise_List_Adapter(ArrayList<Exercise> ExerXNmItem){
+    public Workout_Exercise_List_Adapter(ArrayList<Workout_Exercise> ExerXNmItem){
         this.WO_ExerNmList = ExerXNmItem;
     }
 
@@ -24,9 +24,18 @@ public class Workout_Exercise_List_Adapter extends RecyclerView.Adapter<Workout_
 
         private TextView ExerciseX_Name_Txt;
 
+        private TextView ExerX_Reps_Txt;
+
+        private TextView ExerX_Sets_Txt;
+
+        private TextView ExerX_Weight_Txt;
         public WEL_viewHolder(final View view) {
             super(view);
             ExerciseX_Name_Txt = view.findViewById(R.id.ExerName_WOEB_RV);
+            ExerX_Reps_Txt = view.findViewById(R.id.ExerReps_WOEB_RV);
+            ExerX_Sets_Txt = view.findViewById(R.id.ExerSets_WOEB_RV);
+            ExerX_Weight_Txt = view.findViewById(R.id.ExerWeight_WOEB_RV);
+
         }
     }
 
@@ -39,8 +48,11 @@ public class Workout_Exercise_List_Adapter extends RecyclerView.Adapter<Workout_
 
     @Override
     public void onBindViewHolder(@NonNull Workout_Exercise_List_Adapter.WEL_viewHolder holder, int position) {
-        String ExerciseItem = WO_ExerNmList.get(position).getExercise();
-        holder.ExerciseX_Name_Txt.setText(ExerciseItem);
+        holder.ExerciseX_Name_Txt.setText(WO_ExerNmList.get(position).getName());
+        holder.ExerX_Reps_Txt.setText(WO_ExerNmList.get(position).getReps());
+        holder.ExerX_Sets_Txt.setText(WO_ExerNmList.get(position).getSet());
+        holder.ExerX_Weight_Txt.setText(WO_ExerNmList.get(position).getWeights());
+
     }
 
     @Override

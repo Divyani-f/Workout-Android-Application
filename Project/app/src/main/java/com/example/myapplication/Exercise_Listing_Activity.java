@@ -5,14 +5,22 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Exercise_Listing_Activity extends AppCompatActivity {
 
     private ArrayList<Exercise> ExersNameList;
     private RecyclerView RV_ItemC;
+
+    private AppDatabase ap;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +29,44 @@ public class Exercise_Listing_Activity extends AppCompatActivity {
 
         RV_ItemC = findViewById(R.id.ExerciseList_RecycleV);
         ExersNameList = new ArrayList<>();
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView_EL);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.workoutOption) {
+                swaptoWorkoutList();
+            }
+            else if (id == R.id.ExerOption) {
+
+
+            }
+            else if (id == R.id.HomeOption) {
+                backtoHomeScreen();
+            }
+
+            return super.onOptionsItemSelected(item);
+        });
+
+
         setTestingInfos();
         setELAdapter();
 
+    }
+
+    private void swaptoWorkoutList() {
+        ap=AppDatabase.getInstance(getApplicationContext());
+        Intent intents = new Intent(this, Workout_Listing_Activity.class);
+        List<Workout_Exercise> l1=ap.workout_exerciseDao().getAllWorkout_Exercises();
+        intents.putExtra("workout_list", (Serializable) l1);
+        startActivity(intents);
+
+    }
+
+    private void backtoHomeScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void setELAdapter() {

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     private Button WorkoutListBtn;
     private Button ExerciseListBtn;
 
-    private Button Testing_Workout_Btn;
+
     private AppDatabase ap;
 
     @Override
@@ -37,10 +37,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView
-                = findViewById(R.id.bottomNavigationView);
-
-
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -48,17 +45,17 @@ public class MainActivity extends AppCompatActivity
             if (id == R.id.workoutOption) {
                 changeWorkoutList();
             }
-            else if (id == R.id.newOption) {
-                changeNewWorkout();
+            else if (id == R.id.ExerOption) {
+                changeExerciseList();
 
             }
-            else if (id == R.id.exerciseOption) {
-
+            else if (id == R.id.HomeOption) {
 
             }
 
             return super.onOptionsItemSelected(item);
         });
+
        // insertDataInBackground();
         newWorkoutBtn = findViewById(R.id.NewWorkoutBtn);
         newWorkoutBtn.setOnClickListener(
@@ -73,7 +70,6 @@ public class MainActivity extends AppCompatActivity
                 }
         );
 
-//        workoutLAdapter = new WorkoutLAdapter(this, database_info);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 
@@ -101,13 +97,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-        Testing_Workout_Btn = findViewById(R.id.TestsWorkoutActual);
-        Testing_Workout_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeWorkoutExerBridge();
-            }
-        });
+
 
 
     }
@@ -186,8 +176,4 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void changeWorkoutExerBridge(){
-        Intent intentIt = new Intent(this, Workout_Exercise_List_Activity.class);
-        startActivity(intentIt);
-    }
 }

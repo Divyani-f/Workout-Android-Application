@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/workoutOption"
-        android:title="Option1"
+        android:title="Workouts"
         android:icon="@color/black"/>
     <item
-        android:id="@+id/newOption"
-        android:title="Option2"
+        android:id="@+id/ExerOption"
+        android:title="Exercises"
         android:icon="@color/black"/>
     <item
-        android:id="@+id/exerciseOption"
-        android:title="Option3"
+        android:id="@+id/HomeOption"
+        android:title="Home"
         android:icon="@color/black"/>
 </menu>
